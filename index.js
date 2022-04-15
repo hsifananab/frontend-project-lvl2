@@ -3,6 +3,12 @@ import has from 'lodash/has.js';
 import sortBy from 'lodash/sortBy.js';
 
 const genDiff = (filepath1, filepath2) => {
+  const isJSON = (filepath) => filepath.split('.').pop() === 'json';
+
+  if (!isJSON(filepath1) || !isJSON(filepath2)) {
+    return console.log(`ERR: The format of the file is invalid`);
+  }
+
   const file1 = getData(filepath1);
   const file2 = getData(filepath2);
 
