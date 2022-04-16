@@ -1,12 +1,12 @@
-import getData from './src/getData.js';
 import has from 'lodash/has.js';
 import sortBy from 'lodash/sortBy.js';
+import getData from './src/getData.js';
 
 const genDiff = (filepath1, filepath2) => {
   const isJSON = (filepath) => filepath.split('.').pop() === 'json';
 
   if (!isJSON(filepath1) || !isJSON(filepath2)) {
-    return console.log(`ERR: The format of the file is invalid`);
+    return console.log('ERR: The format of the file is invalid');
   }
 
   const file1 = getData(filepath1);
@@ -30,7 +30,7 @@ const genDiff = (filepath1, filepath2) => {
     })
     .join('\n  ');
 
-  console.log(`{\n  ${result}\n}`);
+  return console.log(`{\n  ${result}\n}`);
 };
 
 export default genDiff;
