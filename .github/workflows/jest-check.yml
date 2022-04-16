@@ -1,21 +1,21 @@
 name: jest-check
 
-on: 
-  push: 
-    branches: 
+on:
+  push:
+    branches:
       - '**'
 
-jobs: 
-  build: 
+jobs:
+  build:
     runs-on: ubuntu-latest
 
-    steps: 
+    steps:
       - uses: actions/checkout@v2
 
-      - name: setup Node.js
-        uses: actions/setup-node@v1
-          with:
-            node-version: '16.x'
+      # - name: setup Node.js
+      #   uses: actions/setup-node@v1
+      #     with:
+      #       node-version: '16.x'
 
       - name: npm install
         run: make install
