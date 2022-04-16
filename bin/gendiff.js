@@ -8,6 +8,6 @@ program
   .version('0.0.1', '-v, --vers', 'output the current version')
   .option('-f, --format', 'output format')
   .arguments('<filepath1> <filepath2>')
-  .action((file1, file2) => genDiff(file1, file2));
+  .action((file1, file2) => console.log(genDiff(file1, file2)));
 
 program.parse();
