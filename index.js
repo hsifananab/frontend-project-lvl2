@@ -1,7 +1,7 @@
 import has from 'lodash/has.js';
 import sortBy from 'lodash/sortBy.js';
 import path from 'path';
-import { jsonParser, yamlParser } from './src/parsers.js';
+import { jsonParser, yamlParser } from '../src/parsers.js';
 
 const getFormat = (filepath) => {
   const extname = path.extname(filepath);
