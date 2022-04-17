@@ -17,6 +17,9 @@ parserOptions:
   }
 rules:
   no-console: 0
-  import/extensions: 'off'
+  import/extensions: # FIXME: remove when rule will be adjusted for new nodejs version
+    - error
+    - ignorePackages
+    - js: always
   no-underscore-dangle: [2, { 'allow': ['__filename', '__dirname'] }]
   implicit-arrow-linebreak: 0
