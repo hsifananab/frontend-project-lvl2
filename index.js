@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import has from 'lodash/has.js';
 import sortBy from 'lodash/sortBy.js';
 import path from 'path';
@@ -8,7 +7,8 @@ const getFormat = (filepath) => {
   const extname = path.extname(filepath);
   if (extname === '.json') {
     return jsonParser(filepath);
-  } else if (extname === '.yaml' || extname === '.yml') {
+  }
+  if (extname === '.yaml' || extname === '.yml') {
     return yamlParser(filepath);
   }
   return console.log('ERR: The format of the file is invalid');
