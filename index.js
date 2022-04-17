@@ -1,16 +1,22 @@
+import _ from 'lodash';
 import has from 'lodash/has.js';
 import sortBy from 'lodash/sortBy.js';
-import getData from './src/getData.js';
+import path from 'path';
+import { jsonParser, yamlParser } from './src/parsers.js';
+
+const getFormat = (filepath) => {
+  const extname = path.extname(filepath);
+  if (extname === '.json') {
+    return jsonParser(filepath);
+  } else if (extname === '.yaml' || extname === '.yml') {
+    return yamlParser(filepath);
+  }
+  return console.log('ERR: The format of the file is invalid');
+};
 
 const genDiff = (filepath1, filepath2) => {
-  const isJSON = (filepath) => filepath.split('.').pop() === 'json';
-
-  if (!isJSON(filepath1) || !isJSON(filepath2)) {
-    return console.log('ERR: The format of the file is invalid');
-  }
-
-  const file1 = getData(filepath1);
-  const file2 = getData(filepath2);
+  const file1 = getFormat(filepath1);
+  const file2 = getFormat(filepath2);
 
   const keys = sortBy(Object.keys({ ...file1, ...file2 }));
   const signs = ['-', '+', ' '];
