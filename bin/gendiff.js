@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import genDiff from '../index.js';
-// import _has from 'lodash/has.js';
 
 program
   .description('Compares two configuration files and shows a difference.')

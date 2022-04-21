@@ -16,7 +16,7 @@ const readFile = (filepath) => {
   if (extname === '.yaml' || extname === '.yml') {
     return yamlParser(filepath);
   }
-  return console.log('ERR: The format of the file is invalid');
+  throw new Error('The format of the file is invalid!');
 };
 
 export default readFile;
