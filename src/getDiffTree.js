@@ -6,7 +6,6 @@ const getDiffTree = (file1, file2) => {
   return keys.map((key) => {
     const value1 = file1[key];
     const value2 = file2[key];
-
     if (!_.has(file2, key)) {
       return {
         type: 'removed',
@@ -28,16 +27,14 @@ const getDiffTree = (file1, file2) => {
         children: getDiffTree(value1, value2),
       };
     }
-
     if (!_.isEqual(value1, value2)) {
       return {
-        type: 'changed',
+        type: 'updated',
         key,
         removedValue: value1,
         addedValue: value2,
       };
     }
-
     return {
       type: 'unchanged',
       key,
