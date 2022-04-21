@@ -8,4 +8,15 @@ const jsonParser = (filepath) =>
 const yamlParser = (filepath) =>
   yaml.load(readFileSync(path.resolve(process.cwd(), filepath), 'utf-8'));
 
-export { jsonParser, yamlParser };
+const readFile = (filepath) => {
+  const extname = path.extname(filepath);
+  if (extname === '.json') {
+    return jsonParser(filepath);
+  }
+  if (extname === '.yaml' || extname === '.yml') {
+    return yamlParser(filepath);
+  }
+  return console.log('ERR: The format of the file is invalid');
+};
+
+export default readFile;
