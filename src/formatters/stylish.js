@@ -1,7 +1,9 @@
-const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 3);
+import _ from 'lodash';
+
+const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 4);
 
 const stringify = (data, treeDepth) => {
-  if (typeof data !== 'object') {
+  if (!_.isObject(data)) {
     return `${data}`;
   }
   if (data === null) {
@@ -27,7 +29,10 @@ const stylish = (data) => {
         case 'unchanged':
           return getValue(node.value, ' ');
         case 'changed':
-          return `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`;
+          return `${getValue(node.removedValue, '-')}${getValue(
+            node.addedValue,
+            '+'
+          )}`;
         case 'children':
           return `${indent(depth)}  ${node.key}: {\n${iter(
             node.children,
