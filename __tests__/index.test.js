@@ -75,10 +75,13 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
+const json = `[{"type":"children","key":"common","children":[{"type":"added","key":"follow","value":false},{"type":"unchanged","key":"setting1","value":"Value 1"},{"type":"removed","key":"setting2","value":200},{"type":"updated","key":"setting3","removedValue":true,"addedValue":null},{"type":"added","key":"setting4","value":"blah blah"},{"type":"added","key":"setting5","value":{"key5":"value5"}},{"type":"children","key":"setting6","children":[{"type":"children","key":"doge","children":[{"type":"updated","key":"wow","removedValue":"","addedValue":"so much"}]},{"type":"unchanged","key":"key","value":"value"},{"type":"added","key":"ops","value":"vops"}]}]},{"type":"children","key":"group1","children":[{"type":"updated","key":"baz","removedValue":"bas","addedValue":"bars"},{"type":"unchanged","key":"foo","value":"bar"},{"type":"updated","key":"nest","removedValue":{"key":"value"},"addedValue":"str"}]},{"type":"removed","key":"group2","value":{"abc":12345,"deep":{"id":45}}},{"type":"added","key":"group3","value":{"deep":{"id":{"number":45}},"fee":100500}}]`;
+
 test('gendiff', () => {
   expect(genDiff(yaml1, yaml2)).toEqual(stylish);
   expect(genDiff(yml1, yml2)).toEqual(stylish);
 
   expect(genDiff(json1, json2, 'stylish')).toEqual(stylish);
   expect(genDiff(json1, json2, 'plain')).toEqual(plain);
+  expect(genDiff(json1, json2, 'json')).toEqual(json);
 });
