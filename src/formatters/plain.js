@@ -9,8 +9,8 @@ const stringify = (value) => {
 };
 
 const plain = (data) => {
-  const format = (data, parent) =>
-    data
+  const format = (tree, parent) =>
+    tree
       .filter((node) => node.type !== 'unchanged')
       .map((node) => {
         const property = parent ? `${parent}.${node.key}` : `${node.key}`;
@@ -23,7 +23,7 @@ const plain = (data) => {
             } with value: ${stringify(node.value)}`;
           case 'updated':
             return `Property '${property}' was updated. From ${stringify(
-              node.removedValue
+              node.removedValue,
             )} to ${stringify(node.addedValue)}`;
           case 'children':
             return `${format(node.children, property)}`;

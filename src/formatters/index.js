@@ -8,7 +8,7 @@ const formatData = (data, formatName) => {
     case 'plain':
       return plain(data);
     default:
-      break;
+      throw new Error('Wrong format');
   }
 };
 
