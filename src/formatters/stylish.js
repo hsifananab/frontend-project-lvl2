@@ -17,28 +17,28 @@ const stringify = (data, treeDepth) => {
 
 const stylish = (data) => {
   const iter = (tree, depth) => tree.map((node) => {
-      const getValue = (value, sign) => `${indent(depth)}${sign} ${node.key}: ${stringify(value, depth)}\n`;
-      switch (node.type) {
-        case 'removed':
-          return getValue(node.value, '-');
-        case 'added':
-          return getValue(node.value, '+');
-        case 'unchanged':
-          return getValue(node.value, ' ');
-        case 'updated':
-          return `${getValue(node.removedValue, '-')}${getValue(
-            node.addedValue,
-            '+',
-          )}`;
-        case 'children':
-          return `${indent(depth)}  ${node.key}: {\n${iter(
-            node.children,
-            depth + 1,
-          ).join('')}${indent(depth)}  }\n`;
-        default:
-          throw new Error(`${node.type} does not exist`);
-      }
-    });
+    const getValue = (value, sign) => `${indent(depth)}${sign} ${node.key}: ${stringify(value, depth)}\n`;
+    switch (node.type) {
+      case 'removed':
+        return getValue(node.value, '-');
+      case 'added':
+        return getValue(node.value, '+');
+      case 'unchanged':
+        return getValue(node.value, ' ');
+      case 'updated':
+        return `${getValue(node.removedValue, '-')}${getValue(
+          node.addedValue,
+          '+',
+        )}`;
+      case 'children':
+        return `${indent(depth)}  ${node.key}: {\n${iter(
+          node.children,
+          depth + 1,
+        ).join('')}${indent(depth)}  }\n`;
+      default:
+        throw new Error(`${node.type} does not exist`);
+    }
+  });
   return `{\n${iter(data, 1).join('')}}`;
 };
 
