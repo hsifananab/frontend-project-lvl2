@@ -14,7 +14,6 @@ const json2 = getFixturePath('file2.json');
 
 const yaml1 = getFixturePath('file1.yaml');
 const yaml2 = getFixturePath('file2.yaml');
-
 const yml1 = getFixturePath('file1.yml');
 const yml2 = getFixturePath('file2.yml');
 

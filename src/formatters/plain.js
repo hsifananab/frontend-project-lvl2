@@ -11,7 +11,8 @@ const stringify = (value) => {
 const plain = (data) => {
   const format = (tree, parent) =>
     tree
-      .filter((node) => node.type !== 'unchanged')
+      .filter((node) =>
+        node.type !== 'unchanged')
       .map((node) => {
         const property = parent ? `${parent}.${node.key}` : `${node.key}`;
         switch (node.type) {
