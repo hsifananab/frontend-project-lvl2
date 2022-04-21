@@ -1,4 +1,4 @@
-const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 2);
+const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 3);
 
 const stringify = (data, treeDepth) => {
   if (typeof data !== 'object') {
@@ -9,7 +9,7 @@ const stringify = (data, treeDepth) => {
   }
   const lines = Object.entries(data).map(
     ([key, value]) =>
-      `${indent(treeDepth + 1)}  ${key}: ${stringify(value, treeDepth + 1)}`,
+      `${indent(treeDepth + 1)}  ${key}: ${stringify(value, treeDepth + 1)}`
   );
   return ['{', ...lines, `${indent(treeDepth)}  }`].join('\n');
 };
@@ -31,7 +31,7 @@ const stylish = (data) => {
         case 'children':
           return `${indent(depth)}  ${node.key}: {\n${iter(
             node.children,
-            depth + 1,
+            depth + 1
           ).join('')}${indent(depth)}  }\n`;
         default:
           throw new Error(`${node.type} does not exist`);
