@@ -18,8 +18,7 @@ const yaml2 = getFixturePath('file2.yaml');
 const yml1 = getFixturePath('file1.yml');
 const yml2 = getFixturePath('file2.yml');
 
-const stylish = `
-{
+const stylish = `{
   common: {
     + follow: false
       setting1: Value 1
@@ -62,8 +61,7 @@ const stylish = `
       }
       fee: 100500
   }
-}
-`;
+}`;
 
 const plain = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed

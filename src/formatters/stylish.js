@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 2);
+const indent = (depth, spaceCount = 4) => ' '.repeat(spaceCount * depth - 4);
 
 const stringify = (data, treeDepth) => {
   if (!_.isObject(data)) {
@@ -11,7 +11,7 @@ const stringify = (data, treeDepth) => {
   }
   const lines = Object.entries(data).map(
     ([key, value]) =>
-      `${indent(treeDepth + 1)}  ${key}: ${stringify(value, treeDepth + 1)}`
+      `${indent(treeDepth + 1)}  ${key}: ${stringify(value, treeDepth + 1)}`,
   );
   return ['{', ...lines, `${indent(treeDepth)}  }`].join('\n');
 };
@@ -31,12 +31,12 @@ const stylish = (data) => {
         case 'updated':
           return `${getValue(node.removedValue, '-')}${getValue(
             node.addedValue,
-            '+'
+            '+',
           )}`;
         case 'children':
           return `${indent(depth)}  ${node.key}: {\n${iter(
             node.children,
-            depth + 1
+            depth + 1,
           ).join('')}${indent(depth)}  }\n`;
         default:
           throw new Error(`${node.type} does not exist`);
